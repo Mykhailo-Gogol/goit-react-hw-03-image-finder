@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import Searchbar from "./components/Searchbar/index";
 import ImageGallery from "./components/ImageGallery";
-import Loader from "./components/Loader";
 import Button from "./components/Button";
 
 const App = () => {
@@ -16,7 +15,6 @@ const App = () => {
   return (
     <div className="app">
       <Searchbar searchbarHandler={searchbarHandler} />
-      <Loader />
       <ImageGallery inputValue={inputValue} />
       <Button />
     </div>

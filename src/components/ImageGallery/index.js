@@ -1,8 +1,11 @@
-import ImageGalleryItem from "../ImageGalleryItem";
 import { useState, useEffect } from "react";
+
+import ImageGalleryItem from "../ImageGalleryItem";
+import Spinner from "../Spinner";
 
 const ImageGallery = ({ inputValue }) => {
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const sendRequest = async (input) => {
     try {
@@ -14,7 +17,10 @@ const ImageGallery = ({ inputValue }) => {
       );
       const data = await response.json();
       const { hits } = await data;
-      setImages(hits);
+      setTimeout(() => {
+        setLoading(false);
+        setImages(hits);
+      }, 1000);
     } catch ({ message }) {
       console.log(message);
     }
@@ -24,7 +30,9 @@ const ImageGallery = ({ inputValue }) => {
 
   return (
     <ul className="ImageGallery">
-      {images.length &&
+      {loading ? (
+        <Spinner />
+      ) : (
         images.map(({ id, largeImageURL, webformatURL }) => {
           return (
             <ImageGalleryItem
@@ -33,7 +41,8 @@ const ImageGallery = ({ inputValue }) => {
               webformatURL={webformatURL}
             />
           );
-        })}
+        })
+      )}
     </ul>
   );
 };
