@@ -15,8 +15,8 @@ const App = () => {
   return (
     <div className="app">
       <Searchbar searchbarHandler={searchbarHandler} />
-      <ImageGallery inputValue={inputValue} />
-      <Button />
+      {inputValue && <ImageGallery inputValue={inputValue} />}
+      {inputValue && <Button />}
     </div>
   );
 };
