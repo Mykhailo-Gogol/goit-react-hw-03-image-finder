@@ -7,7 +7,7 @@ const Button = () => {
   };
 
   return (
-    <button className="submit__button" onClick={() => handleLoadMore()}>
+    <button className="Button" onClick={() => handleLoadMore()}>
       Load more
     </button>
   );
