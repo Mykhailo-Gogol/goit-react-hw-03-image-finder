@@ -1,20 +1,20 @@
 import "./App.css";
 import { useState } from "react";
 
-import Searchbar from "./components/Searchbar/index";
+import SearchBar from "./components/SearchBar/index";
 import ImageGallery from "./components/ImageGallery";
 import Button from "./components/Button";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const searchbarHandler = (event) => {
-    setInputValue(event.target.value);
+  const handleFormSubmit = (value) => {
+    setInputValue(value);
   };
 
   return (
     <div className="app">
-      <Searchbar searchbarHandler={searchbarHandler} />
+      <SearchBar handleFormSubmit={handleFormSubmit} />
       {inputValue && <ImageGallery inputValue={inputValue} />}
       {inputValue && <Button />}
     </div>
