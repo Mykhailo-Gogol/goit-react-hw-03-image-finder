@@ -1,5 +1,6 @@
-const Button = () => {
+const Button = ({ handleLoadMoreImages }) => {
   const handleLoadMore = () => {
+    handleLoadMoreImages();
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
