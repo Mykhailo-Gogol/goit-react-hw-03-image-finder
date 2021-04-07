@@ -24,10 +24,8 @@ const ImageGallery = ({ inputValue }) => {
           `https://pixabay.com/api/?q=${inputValue}&page=${page}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=12`
         )
         .then((response) => {
-          setTimeout(() => {
-            setLoading(false);
-            setImages((images) => [...images, ...response.data.hits]);
-          }, 200);
+          setLoading(false);
+          setImages((images) => [...images, ...response.data.hits]);
         });
     } catch ({ message }) {
       console.log(message);
