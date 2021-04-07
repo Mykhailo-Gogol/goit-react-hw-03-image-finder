@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const SearchBar = ({ handleFormSubmit }) => {
   const [inputValue, setInputValue] = useState("");
@@ -34,6 +35,10 @@ const SearchBar = ({ handleFormSubmit }) => {
       </header>
     </>
   );
+};
+
+SearchBar.propTypes = {
+  handleFormSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

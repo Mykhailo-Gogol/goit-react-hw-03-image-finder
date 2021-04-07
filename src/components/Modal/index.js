@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Modal = ({ largeImageURL, handleModalClose }) => {
   return (
     <div className="Overlay" onClick={handleModalClose}>
@@ -6,6 +8,10 @@ const Modal = ({ largeImageURL, handleModalClose }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  handleModalClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

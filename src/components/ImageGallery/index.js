@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 
 import ImageGalleryItem from "../ImageGalleryItem";
@@ -57,6 +58,10 @@ const ImageGallery = ({ inputValue }) => {
       {inputValue && <Button handleLoadMoreImages={handleLoadMoreImages} />}
     </>
   );
+};
+
+ImageGallery.propTypes = {
+  inputValue: PropTypes.string.isRequired,
 };
 
 export default ImageGallery;

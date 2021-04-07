@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Button = ({ handleLoadMoreImages }) => {
   const handleLoadMore = () => {
     handleLoadMoreImages();
@@ -12,6 +14,10 @@ const Button = ({ handleLoadMoreImages }) => {
       Load more
     </button>
   );
+};
+
+Button.propTypes = {
+  handleLoadMoreImages: PropTypes.func.isRequired,
 };
 
 export default Button;
