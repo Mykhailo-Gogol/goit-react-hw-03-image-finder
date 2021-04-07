@@ -13,6 +13,11 @@ const ImageGallery = ({ inputValue }) => {
   const apiKey = "19918904-c3236105177a74f036d1e644e";
 
   useEffect(() => {
+    setImages([]);
+    setPage(1);
+  }, [inputValue]);
+
+  useEffect(() => {
     try {
       axios
         .get(

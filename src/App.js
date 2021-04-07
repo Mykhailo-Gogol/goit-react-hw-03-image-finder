@@ -1,11 +1,15 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SearchBar from "./components/SearchBar/index";
 import ImageGallery from "./components/ImageGallery";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    setInputValue(inputValue);
+  }, [inputValue]);
 
   const handleFormSubmit = (value) => {
     setInputValue(value);
