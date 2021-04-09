@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { warning, success } from "../../utils";
 
+import fetchData from "../../services";
 import ImageGalleryItem from "../ImageGalleryItem";
 import Spinner from "../Spinner";
 import Button from "../Button";
@@ -11,26 +13,22 @@ const ImageGallery = ({ inputValue }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
-  const apiKey = "19918904-c3236105177a74f036d1e644e";
-
   useEffect(() => {
     setImages([]);
     setPage(1);
   }, [inputValue]);
 
   useEffect(() => {
-    try {
-      axios
-        .get(
-          `https://pixabay.com/api/?q=${inputValue}&page=${page}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=12`
-        )
-        .then((response) => {
-          setLoading(false);
+    fetchData(inputValue, page)
+      .then((response) => {
+        if (response.data.hits.length === 0) {
+          warning();
+        } else {
           setImages((images) => [...images, ...response.data.hits]);
-        });
-    } catch ({ message }) {
-      console.log(message);
-    }
+          success();
+        }
+      })
+      .finally(() => setLoading(false));
   }, [inputValue, page]);
 
   const handleLoadMoreImages = () => {
@@ -56,6 +54,7 @@ const ImageGallery = ({ inputValue }) => {
         )}
       </ul>
       {inputValue && <Button handleLoadMoreImages={handleLoadMoreImages} />}
+      <ToastContainer onClick={() => console.log("👍 ")} />
     </>
   );
 };
