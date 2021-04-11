@@ -36,15 +36,17 @@ const App = () => {
         } else {
           success();
         }
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: "smooth",
-        });
         setImages((prevState) => [...prevState, ...hits]);
         setCurrentPage((prevState) => prevState + 1);
       })
       .catch((error) => setErrorMessage(error.message))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth",
+        });
+      });
   };
 
   const onChangeQuery = (query) => {
